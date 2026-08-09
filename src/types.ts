@@ -49,6 +49,8 @@ export interface SocialLinks {
   github: string;
   linkedin: string;
   twitter?: string;
+  tiktok?: string;
+  snapchat?: string;
   location: string;
   website?: string;
 }

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { 
   Github, 
   Linkedin, 
@@ -14,16 +14,13 @@ import {
   Youtube,
   Briefcase,
   Award,
-  Camera,
   Video,
   Palette,
   Share2,
   Megaphone,
-  PhoneCall,
-  Upload
+  PhoneCall
 } from 'lucide-react';
 import { PortfolioData } from '../types';
-import { compressImageFile } from '../utils/imageCompressor';
 import { TechVideoBackground } from './TechVideoBackground';
 
 interface HeroSectionProps {
@@ -41,27 +38,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   onOpenEdit,
   onUpdatePortfolio
 }) => {
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // Direct profile photo upload handler using canvas compression
-  const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    try {
-      const compressedDataUrl = await compressImageFile(file, 600, 0.82);
-      if (compressedDataUrl && onUpdatePortfolio) {
-        const updated = {
-          ...portfolio,
-          avatarUrl: compressedDataUrl
-        };
-        onUpdatePortfolio(updated);
-      }
-    } catch (err) {
-      console.error("Photo upload error:", err);
-      alert("Could not process image file. Please try another image.");
-    }
-  };
 
   const roles = [
     { label: "Digital Marketer", icon: Megaphone, color: "text-zinc-100 bg-zinc-900/90 border-zinc-700" },
@@ -227,27 +203,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
               )}
 
               <div className="flex items-center gap-2">
-                {portfolio.socials.github && (
+                {portfolio.socials.tiktok && (
                   <a
-                    href={portfolio.socials.github}
+                    href={portfolio.socials.tiktok}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="GitHub Profile"
-                    className="p-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white hover:border-cyan-400 hover:bg-slate-800 transition-all shadow-md"
+                    title="TikTok Profile (@malik_abdulsaboor)"
+                    className="p-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-pink-400 hover:border-pink-500 hover:bg-slate-800 transition-all shadow-md"
                   >
-                    <Github className="w-4 h-4" />
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 3 15.68 6.34 6.34 0 0 0 9.35 22a6.34 6.34 0 0 0 6.33-6.32V9.05a8.16 8.16 0 0 0 4.91 1.63V7.2a4.86 4.86 0 0 1-1-.51z"/>
+                    </svg>
                   </a>
                 )}
 
-                {portfolio.socials.linkedin && (
+                {portfolio.socials.snapchat && (
                   <a
-                    href={portfolio.socials.linkedin}
+                    href={portfolio.socials.snapchat}
                     target="_blank"
                     rel="noopener noreferrer"
-                    title="LinkedIn Profile"
-                    className="p-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-white hover:border-cyan-400 hover:bg-slate-800 transition-all shadow-md"
+                    title="Snapchat Profile (saboor.01)"
+                    className="p-2.5 rounded-xl bg-slate-900 text-slate-300 border border-slate-700 hover:text-yellow-400 hover:border-yellow-400 hover:bg-slate-800 transition-all shadow-md"
                   >
-                    <Linkedin className="w-4 h-4" />
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                      <path d="M12.001 2c-3.834 0-6.19 2.812-6.19 5.894 0 1.294.462 2.766 1.134 3.655.151.2.185.385.084.588-.168.337-.89 1.713-1.077 2.05-.084.152-.034.337.118.422.336.185 1.446.404 2.085.118.252-.118.454-.084.622.101.908.992 2.068 1.48 3.224 1.48 1.156 0 2.316-.488 3.224-1.48.168-.185.37-.219.622-.101.639.286 1.749.067 2.085-.118.152-.085.202-.27.118-.422-.187-.337-.909-1.713-1.077-2.05-.101-.203-.067-.388.084-.588.672-.889 1.134-2.361 1.134-3.655 0-3.082-2.356-5.894-6.19-5.894z"/>
+                    </svg>
                   </a>
                 )}
 
@@ -309,8 +289,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                 <span>Executive Director</span>
               </div>
 
-              {/* Profile Image with Direct Photo Upload Overlay */}
-              <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 mb-6 group">
+              {/* Profile Image (Permanent display) */}
+              <div className="relative mx-auto w-36 h-36 sm:w-44 sm:h-44 mb-6">
                 <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-white via-zinc-400 to-zinc-700 animate-spin-slow p-1 shadow-2xl">
                   <div className="w-full h-full rounded-full bg-zinc-950" />
                 </div>
@@ -324,40 +304,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
                   }}
                 />
 
-                {/* Hidden File Input for Direct Photo Change */}
-                <input
-                  type="file"
-                  ref={fileInputRef}
-                  onChange={handlePhotoUpload}
-                  accept="image/*"
-                  className="hidden"
-                />
-
-                {/* Interactive Upload Photo Button on Hover or Click */}
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  title="Upload / Change Profile Photo"
-                  className="absolute inset-2 w-[calc(100%-16px)] h-[calc(100%-16px)] rounded-full bg-zinc-950/80 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center gap-1 text-white border-2 border-white cursor-pointer z-10"
-                >
-                  <Camera className="w-6 h-6 text-white animate-bounce" />
-                  <span className="text-[11px] font-extrabold tracking-wider uppercase text-zinc-200">Change Photo</span>
-                </button>
-
                 {/* Floating Badge */}
                 <div className="absolute -bottom-2 -right-2 bg-white text-zinc-950 p-2.5 rounded-2xl shadow-xl flex items-center justify-center border-2 border-zinc-950 animate-float-slow">
                   <Sparkles className="w-4 h-4 fill-zinc-950" />
                 </div>
-              </div>
-
-              {/* Direct Upload Photo Button for Mobile & Desktop */}
-              <div className="flex justify-center mb-5">
-                <button
-                  onClick={() => fileInputRef.current?.click()}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-zinc-800/90 hover:bg-zinc-700 text-zinc-200 border border-zinc-700 text-xs font-bold transition-all shadow-sm group hover:border-zinc-500"
-                >
-                  <Upload className="w-3.5 h-3.5 text-white group-hover:scale-110 transition-transform" />
-                  <span>Upload Your Photo</span>
-                </button>
               </div>
 
               {/* Quick Info */}

@@ -20,8 +20,10 @@ export const defaultPortfolioData: PortfolioData = {
     github: "https://github.com/malikabdulsaboor",
     linkedin: "https://linkedin.com/in/malikabdulsaboor",
     twitter: "https://twitter.com/abdulsaboor_dev",
+    tiktok: "https://tiktok.com/@malik_abdulsaboor",
+    snapchat: "https://www.snapchat.com/add/saboor.01?share_id=tDAWrBHXyxo&locale=en-PK",
     location: "Abbottabad, Pakistan",
-    website: "https://lylo.store"
+    website: "https://ais-pre-yfltm4x7chjq5khrgnqlh3-159123720771.asia-east1.run.app"
   },
   projects: [
     {
