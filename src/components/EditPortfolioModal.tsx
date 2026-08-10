@@ -23,7 +23,7 @@ interface EditPortfolioModalProps {
   portfolio: PortfolioData;
   onSave: (data: PortfolioData) => void;
   onReset: () => void;
-  isDarkMode: boolean;
+  isDarkMode?: boolean;
 }
 
 export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
@@ -31,8 +31,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
   onClose,
   portfolio,
   onSave,
-  onReset,
-  isDarkMode
+  onReset
 }) => {
   if (!isOpen) return null;
 
@@ -77,7 +76,6 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
     reader.readAsText(file);
   };
 
-  // Helper to add project
   const handleAddProject = () => {
     const newProj: Project = {
       id: `p_${Date.now()}`,
@@ -105,40 +103,40 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm overflow-y-auto">
-      <div className={`relative w-full max-w-4xl max-h-[90vh] rounded-3xl border shadow-2xl flex flex-col overflow-hidden my-auto ${
-        isDarkMode ? 'bg-slate-900 border-slate-800 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
-      }`}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md overflow-y-auto">
+      <div className="relative w-full max-w-4xl max-h-[90vh] rounded-2xl border border-neutral-800 bg-[#0c0c0d] text-white shadow-2xl flex flex-col overflow-hidden my-auto glass-3d">
         
         {/* Header Bar */}
-        <div className="p-5 sm:p-6 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between shrink-0">
-          <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-emerald-500/10 text-emerald-500">
+        <div className="p-5 sm:p-6 border-b border-neutral-800 flex items-center justify-between shrink-0 bg-[#080808]">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-red-950/80 border border-red-800 text-red-500">
               <Sparkles className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold">Customize Portfolio Content</h2>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
-                Edit bio, title, socials, and projects instantly.
+              <h2 className="font-bebas text-2xl tracking-wide text-white uppercase">
+                CUSTOMIZE PORTFOLIO CONTENT
+              </h2>
+              <p className="text-xs text-neutral-400 font-sans-main">
+                Update bio, title, socials, and project entries instantly.
               </p>
             </div>
           </div>
 
           <button
             onClick={onClose}
-            className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+            className="p-2 rounded-xl text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
-        {/* Modal Navigation Tabs */}
-        <div className="flex items-center gap-2 px-6 pt-4 border-b border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-950/40 overflow-x-auto shrink-0">
+        {/* Navigation Tabs */}
+        <div className="flex items-center gap-2 px-6 pt-3 border-b border-neutral-800 bg-[#080808] overflow-x-auto shrink-0">
           {[
-            { id: 'profile', label: 'Personal Info', icon: User },
-            { id: 'socials', label: 'Social & Links', icon: Share2 },
-            { id: 'projects', label: `Projects (${formData.projects.length})`, icon: FolderGit2 },
-            { id: 'experience', label: 'Experience', icon: Briefcase },
+            { id: 'profile', label: 'PERSONAL INFO', icon: User },
+            { id: 'socials', label: 'SOCIAL & LINKS', icon: Share2 },
+            { id: 'projects', label: `PROJECTS (${formData.projects.length})`, icon: FolderGit2 },
+            { id: 'experience', label: 'EXPERIENCE', icon: Briefcase },
           ].map((tab) => {
             const Icon = tab.icon;
             const isActive = activeTab === tab.id;
@@ -146,10 +144,10 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`px-4 py-2.5 rounded-t-xl text-xs sm:text-sm font-semibold flex items-center gap-2 transition-all border-b-2 whitespace-nowrap ${
+                className={`px-4 py-3 font-bebas text-sm tracking-wider flex items-center gap-2 transition-all border-b-2 whitespace-nowrap ${
                   isActive
-                    ? 'border-emerald-500 text-emerald-500 bg-white dark:bg-slate-900'
-                    : 'border-transparent text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200'
+                    ? 'border-red-600 text-red-500 bg-neutral-900/80'
+                    : 'border-transparent text-neutral-400 hover:text-white'
                 }`}
               >
                 <Icon className="w-4 h-4" />
@@ -159,56 +157,64 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
           })}
         </div>
 
-        {/* Modal Content Body */}
-        <div className="p-6 overflow-y-auto space-y-6 flex-1">
+        {/* Content Body */}
+        <div className="p-6 overflow-y-auto space-y-6 flex-1 bg-[#0c0c0d]">
           
           {/* PROFILE TAB */}
           {activeTab === 'profile' && (
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold mb-1">Full Name</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    FULL NAME *
+                  </label>
                   <input
                     type="text"
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-bold border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold mb-1">Professional Title</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    PROFESSIONAL TITLE *
+                  </label>
                   <input
                     type="text"
                     value={formData.title}
                     onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-bold border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold mb-1">Catchy Tagline</label>
+                <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                  CATCHY TAGLINE
+                </label>
                 <input
                   type="text"
                   value={formData.tagline}
                   onChange={(e) => setFormData({ ...formData, tagline: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                  className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-medium border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-bold mb-1">About Bio</label>
+                <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                  ABOUT BIO
+                </label>
                 <textarea
                   rows={4}
                   value={formData.about}
                   onChange={(e) => setFormData({ ...formData, about: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                  className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-normal border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600 leading-relaxed"
                 />
               </div>
 
-              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200 dark:border-slate-700/80 flex flex-col sm:flex-row items-center gap-5">
-                <div className="relative shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-cyan-400 shadow-md bg-slate-900">
+              <div className="p-4 rounded-xl bg-neutral-900/90 border border-neutral-800 flex flex-col sm:flex-row items-center gap-5">
+                <div className="relative shrink-0 w-20 h-20 rounded-full overflow-hidden border-2 border-red-600 shadow-lg bg-black">
                   <img
                     src={formData.avatarUrl}
                     alt="Profile Avatar Preview"
@@ -220,20 +226,22 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                 </div>
 
                 <div className="flex-1 space-y-2 w-full">
-                  <label className="block text-xs font-bold">Profile Photo / Avatar</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase">
+                    PROFILE PHOTO / AVATAR
+                  </label>
                   
                   <div className="flex flex-col sm:flex-row gap-2">
                     <input
                       type="text"
                       value={formData.avatarUrl}
                       onChange={(e) => setFormData({ ...formData, avatarUrl: e.target.value })}
-                      placeholder="Paste Image URL or upload below"
-                      className="flex-1 px-3.5 py-2 rounded-xl text-xs sm:text-sm border bg-white dark:bg-slate-900 dark:border-slate-700"
+                      placeholder="Paste Image URL or upload file"
+                      className="flex-1 px-3.5 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600 placeholder-neutral-500"
                     />
 
-                    <label className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-cyan-500 hover:bg-cyan-600 text-white cursor-pointer transition-all shrink-0">
+                    <label className="inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg font-bebas text-xs tracking-wider bg-red-600 hover:bg-red-700 text-white cursor-pointer transition-all shrink-0">
                       <Upload className="w-4 h-4" />
-                      <span>Upload File</span>
+                      <span>UPLOAD FILE</span>
                       <input
                         type="file"
                         accept="image/*"
@@ -254,19 +262,21 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       />
                     </label>
                   </div>
-                  <p className="text-[11px] text-slate-500 dark:text-slate-400">
+                  <p className="text-[11px] text-neutral-400 font-sans-main">
                     Supports PNG, JPG, WebP images from local device or web URL.
                   </p>
                 </div>
               </div>
 
               <div>
-                <label className="block text-xs font-bold mb-1">Availability Status</label>
+                <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                  AVAILABILITY STATUS
+                </label>
                 <input
                   type="text"
                   value={formData.statusText}
                   onChange={(e) => setFormData({ ...formData, statusText: e.target.value })}
-                  className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                  className="w-full px-4 py-3 rounded-lg text-xs font-sans-main border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                 />
               </div>
             </div>
@@ -277,7 +287,9 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
             <div className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-bold mb-1">Email Address</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    EMAIL ADDRESS
+                  </label>
                   <input
                     type="email"
                     value={formData.socials.email}
@@ -285,12 +297,14 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       ...formData,
                       socials: { ...formData.socials, email: e.target.value }
                     })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-bold border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold mb-1">Location</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    LOCATION
+                  </label>
                   <input
                     type="text"
                     value={formData.socials.location}
@@ -298,14 +312,16 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       ...formData,
                       socials: { ...formData.socials, location: e.target.value }
                     })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main font-bold border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
-                  <label className="block text-xs font-bold mb-1">GitHub URL</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    GITHUB URL
+                  </label>
                   <input
                     type="text"
                     value={formData.socials.github}
@@ -313,12 +329,14 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       ...formData,
                       socials: { ...formData.socials, github: e.target.value }
                     })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold mb-1">LinkedIn URL</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    LINKEDIN URL
+                  </label>
                   <input
                     type="text"
                     value={formData.socials.linkedin}
@@ -326,12 +344,14 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       ...formData,
                       socials: { ...formData.socials, linkedin: e.target.value }
                     })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold mb-1">Twitter / X URL</label>
+                  <label className="block font-bebas text-xs tracking-wider text-neutral-300 uppercase mb-1">
+                    TWITTER / X URL
+                  </label>
                   <input
                     type="text"
                     value={formData.socials.twitter || ''}
@@ -339,7 +359,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                       ...formData,
                       socials: { ...formData.socials, twitter: e.target.value }
                     })}
-                    className="w-full px-3.5 py-2.5 rounded-xl text-xs sm:text-sm border bg-slate-50 dark:bg-slate-800 dark:border-slate-700"
+                    className="w-full px-4 py-3 rounded-lg text-xs font-sans-main border border-neutral-800 bg-neutral-900 text-white focus:outline-none focus:border-red-600"
                   />
                 </div>
               </div>
@@ -350,26 +370,28 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
           {activeTab === 'projects' && (
             <div className="space-y-6">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-slate-500 uppercase">Manage Portfolio Projects</span>
+                <span className="font-bebas text-sm tracking-wider text-neutral-400 uppercase">
+                  MANAGE PORTFOLIO PROJECTS
+                </span>
                 <button
                   onClick={handleAddProject}
-                  className="px-3.5 py-2 rounded-xl bg-emerald-600 text-white text-xs font-semibold flex items-center gap-1.5"
+                  className="px-3.5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bebas text-xs tracking-wider flex items-center gap-1.5 shadow-md shadow-red-600/20"
                 >
                   <Plus className="w-4 h-4" />
-                  <span>Add Project</span>
+                  <span>ADD PROJECT</span>
                 </button>
               </div>
 
               <div className="space-y-4">
                 {formData.projects.map((proj, idx) => (
-                  <div key={proj.id} className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-800/40 space-y-3">
+                  <div key={proj.id} className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/80 space-y-3">
                     <div className="flex items-center justify-between gap-2">
-                      <div className="font-bold text-sm text-emerald-500">
-                        Project #{idx + 1}
+                      <div className="font-bebas text-base text-red-500 font-bold tracking-wider">
+                        PROJECT #{idx + 1}
                       </div>
                       <button
                         onClick={() => handleRemoveProject(proj.id)}
-                        className="p-1.5 rounded-lg text-rose-500 hover:bg-rose-500/10"
+                        className="p-1.5 rounded-lg text-red-500 hover:bg-red-950/50"
                         title="Remove Project"
                       >
                         <Trash2 className="w-4 h-4" />
@@ -386,7 +408,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                           updated[idx].title = e.target.value;
                           setFormData({ ...formData, projects: updated });
                         }}
-                        className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                        className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                       />
 
                       <select
@@ -396,7 +418,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                           updated[idx].category = e.target.value as any;
                           setFormData({ ...formData, projects: updated });
                         }}
-                        className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                        className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                       >
                         <option value="Full Stack">Full Stack</option>
                         <option value="AI / GenAI">AI / GenAI</option>
@@ -414,7 +436,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                         updated[idx].description = e.target.value;
                         setFormData({ ...formData, projects: updated });
                       }}
-                      className="w-full px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                      className="w-full px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                     />
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -427,7 +449,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                           updated[idx].tags = e.target.value.split(',').map(t => t.trim()).filter(Boolean);
                           setFormData({ ...formData, projects: updated });
                         }}
-                        className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                        className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                       />
 
                       <input
@@ -439,7 +461,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                           updated[idx].imageUrl = e.target.value;
                           setFormData({ ...formData, projects: updated });
                         }}
-                        className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                        className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                       />
                     </div>
                   </div>
@@ -451,9 +473,11 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
           {/* EXPERIENCE TAB */}
           {activeTab === 'experience' && (
             <div className="space-y-4">
-              <span className="text-xs font-bold text-slate-500 uppercase">Work Experience Entries</span>
+              <span className="font-bebas text-sm tracking-wider text-neutral-400 uppercase">
+                WORK EXPERIENCE ENTRIES
+              </span>
               {formData.experiences.map((exp, idx) => (
-                <div key={exp.id} className="p-4 rounded-2xl border border-slate-200 dark:border-slate-800 space-y-3">
+                <div key={exp.id} className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/80 space-y-3">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <input
                       type="text"
@@ -464,7 +488,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                         updated[idx].role = e.target.value;
                         setFormData({ ...formData, experiences: updated });
                       }}
-                      className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                      className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                     />
                     <input
                       type="text"
@@ -475,7 +499,7 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
                         updated[idx].company = e.target.value;
                         setFormData({ ...formData, experiences: updated });
                       }}
-                      className="px-3 py-2 rounded-xl text-xs border dark:bg-slate-900 dark:border-slate-700"
+                      className="px-3 py-2 rounded-lg text-xs font-sans-main border border-neutral-800 bg-black text-white focus:outline-none focus:border-red-600"
                     />
                   </div>
                 </div>
@@ -486,30 +510,30 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
         </div>
 
         {/* Modal Footer Controls */}
-        <div className="p-5 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950/60 flex flex-wrap items-center justify-between gap-3 shrink-0">
+        <div className="p-5 border-t border-neutral-800 bg-[#080808] flex flex-wrap items-center justify-between gap-3 shrink-0">
           
           <div className="flex items-center gap-2">
             <button
               onClick={onReset}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold text-rose-500 border border-rose-200 dark:border-rose-900/50 hover:bg-rose-50 dark:hover:bg-rose-950/30 flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-lg font-bebas text-xs tracking-wider text-red-500 border border-red-900/80 bg-red-950/30 hover:bg-red-950/60 flex items-center gap-1.5 transition-colors"
               title="Reset all content to original defaults"
             >
               <RotateCcw className="w-3.5 h-3.5" />
-              <span>Reset Defaults</span>
+              <span>RESET DEFAULTS</span>
             </button>
 
             <button
               onClick={handleExportJSON}
-              className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1.5"
+              className="px-3.5 py-2 rounded-lg font-bebas text-xs tracking-wider border border-neutral-800 text-neutral-300 hover:bg-neutral-800 hover:text-white flex items-center gap-1.5 transition-colors"
               title="Download portfolio as JSON file"
             >
               <Download className="w-3.5 h-3.5" />
-              <span>Export JSON</span>
+              <span>EXPORT JSON</span>
             </button>
 
-            <label className="px-3.5 py-2 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 flex items-center gap-1.5 cursor-pointer">
+            <label className="px-3.5 py-2 rounded-lg font-bebas text-xs tracking-wider border border-neutral-800 text-neutral-300 hover:bg-neutral-800 hover:text-white flex items-center gap-1.5 cursor-pointer transition-colors">
               <Upload className="w-3.5 h-3.5" />
-              <span>Import JSON</span>
+              <span>IMPORT JSON</span>
               <input type="file" accept=".json" onChange={handleImportJSON} className="hidden" />
             </label>
           </div>
@@ -517,17 +541,17 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
           <div className="flex items-center gap-2">
             <button
               onClick={onClose}
-              className="px-4 py-2.5 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="px-4 py-2.5 rounded-lg font-bebas text-xs tracking-wider border border-neutral-800 text-neutral-400 hover:text-white hover:bg-neutral-800"
             >
-              Cancel
+              CANCEL
             </button>
 
             <button
               onClick={handleSave}
-              className="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-md shadow-emerald-600/20 flex items-center gap-1.5"
+              className="px-5 py-2.5 rounded-lg btn-3d-red text-white font-bebas text-xs tracking-widest shadow-lg shadow-red-600/30 flex items-center gap-1.5"
             >
               <Save className="w-4 h-4" />
-              <span>{saveSuccess ? 'Saved!' : 'Save Portfolio'}</span>
+              <span>{saveSuccess ? 'SAVED!' : 'SAVE PORTFOLIO'}</span>
             </button>
           </div>
 
@@ -537,3 +561,4 @@ export const EditPortfolioModal: React.FC<EditPortfolioModalProps> = ({
     </div>
   );
 };
+
