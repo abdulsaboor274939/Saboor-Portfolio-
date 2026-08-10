@@ -393,6 +393,84 @@ export const defaultPortfolioData: PortfolioData = {
     }
 
   ],
+  edits: [
+    {
+      id: "edit-1",
+      title: "Epic Commercial Reel - Luxury & Brand Promo",
+      type: "video",
+      categoryLabel: "Commercial Video Edit",
+      description: "Director-level cinematic commercial edit featuring 4K color grading, dynamic sound design, kinetic captions, and custom motion graphic transitions.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=80",
+      mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      softwareUsed: ["Adobe Premiere Pro", "After Effects", "DaVinci Resolve"],
+      aspectRatio: "16:9",
+      duration: "1:15",
+      featured: true
+    },
+    {
+      id: "edit-2",
+      title: "LYLO.store Fashion & Shoes Viral Reel",
+      type: "reel",
+      categoryLabel: "Reels & Shorts",
+      description: "High-retention vertical short-form edit tailored for Instagram Reels & TikTok with fast music syncing, animated auto-captions, and hook framing.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
+      mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoypasses.mp4",
+      softwareUsed: ["CapCut Pro", "Premiere Pro", "Photoshop"],
+      aspectRatio: "9:16",
+      duration: "0:30",
+      featured: true
+    },
+    {
+      id: "edit-3",
+      title: "Hult Prize International Poster & Visual Identity",
+      type: "design",
+      categoryLabel: "Graphic Design",
+      description: "Official visual design poster and social media graphics created as Lead Graphic Designer for Hult Prize Pakistan.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+      softwareUsed: ["Adobe Photoshop", "Illustrator"],
+      aspectRatio: "1:1",
+      duration: "Graphic Design",
+      featured: true
+    },
+    {
+      id: "edit-4",
+      title: "Bolt Mindz 3D Motion Intro & Particle FX",
+      type: "motion",
+      categoryLabel: "Motion Graphics",
+      description: "2D/3D kinetic typography and particle motion intro designed for Bolt Mindz YouTube platform (66.1K+ Subscribers).",
+      thumbnailUrl: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=80",
+      mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      softwareUsed: ["After Effects", "Blender", "Premiere Pro"],
+      aspectRatio: "16:9",
+      duration: "0:45",
+      featured: true
+    },
+    {
+      id: "edit-5",
+      title: "LYLO.store Luxury Watch Social Media Ad Creative",
+      type: "design",
+      categoryLabel: "Graphic Design",
+      description: "High-converting social media creative banner designed for Meta ad campaigns promoting luxury timepieces.",
+      thumbnailUrl: "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=800&q=80",
+      softwareUsed: ["Adobe Photoshop", "Canva Pro"],
+      aspectRatio: "4:5",
+      duration: "Ad Banner",
+      featured: false
+    },
+    {
+      id: "edit-6",
+      title: "AUST Incubator Founder Interview Showcase",
+      type: "video",
+      categoryLabel: "Video Edit",
+      description: "Multi-camera founder interview edit produced as Director Media Communications at Business Incubation Center (BIC AUST).",
+      thumbnailUrl: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&w=800&q=80",
+      mediaUrl: "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+      softwareUsed: ["Premiere Pro", "Audition"],
+      aspectRatio: "16:9",
+      duration: "2:40",
+      featured: false
+    }
+  ],
   skillCategories: [
     {
       name: "Digital Marketing & E-Commerce",

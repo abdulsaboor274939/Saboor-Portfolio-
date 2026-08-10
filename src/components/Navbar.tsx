@@ -1,18 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Code, 
-  UserCheck, 
-  FolderGit2, 
-  Cpu, 
-  Briefcase, 
-  Mail, 
-  Edit, 
-  FileText, 
-  Sun, 
-  Moon, 
   Menu, 
   X,
-  Sparkles
+  FileText,
+  Edit,
+  Sparkles,
+  ArrowUpRight
 } from 'lucide-react';
 import { PortfolioData } from '../types';
 
@@ -28,8 +21,6 @@ export const Navbar: React.FC<NavbarProps> = ({
   portfolio,
   onOpenEdit,
   onOpenResume,
-  isDarkMode,
-  setIsDarkMode
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -39,8 +30,8 @@ export const Navbar: React.FC<NavbarProps> = ({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['about', 'brands', 'projects', 'skills', 'experience', 'services', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      const sections = ['about', 'brands', 'projects', 'services', 'skills', 'experience', 'contact'];
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
         const el = document.getElementById(section);
@@ -60,12 +51,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navLinks = [
-    { name: 'About', href: '#about', id: 'about', icon: UserCheck },
-    { name: 'Brands', href: '#brands', id: 'brands', icon: Sparkles },
-    { name: 'Projects', href: '#projects', id: 'projects', icon: FolderGit2 },
-    { name: 'Skills', href: '#skills', id: 'skills', icon: Cpu },
-    { name: 'Experience', href: '#experience', id: 'experience', icon: Briefcase },
-    { name: 'Contact', href: '#contact', id: 'contact', icon: Mail },
+    { name: 'HOME', href: '#about', id: 'about' },
+    { name: 'PROJECTS', href: '#projects', id: 'projects' },
+    { name: 'SHOWCASE', href: '#services', id: 'services' },
+    { name: 'SKILLS & PROCESS', href: '#skills', id: 'skills' },
+    { name: 'EXPERIENCE', href: '#experience', id: 'experience' },
+    { name: 'CONTACT', href: '#contact', id: 'contact' },
   ];
 
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -80,40 +71,57 @@ export const Navbar: React.FC<NavbarProps> = ({
   return (
     <header
       id="main-nav-header"
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-[#080d1a]/90 backdrop-blur-xl border-b border-cyan-500/20 shadow-xl shadow-black/40'
-          : 'bg-transparent py-2'
+          ? 'bg-[#080808]/90 backdrop-blur-xl border-b border-neutral-900 py-3 shadow-2xl'
+          : 'bg-transparent py-4'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        {/* Top Header Bar matching Reference */}
+        <div className="flex items-center justify-between pb-2 border-b border-neutral-900/80">
+          <div className="flex items-center gap-2">
+            <span className="font-bebas text-sm sm:text-base tracking-widest text-neutral-400">
+              VIDEO EDITOR & DIGITAL MEDIA CREATOR
+            </span>
+          </div>
+
+          <div className="hidden sm:flex items-center gap-2 text-xs font-bold tracking-wider text-red-500 uppercase">
+            <Sparkles className="w-3.5 h-3.5 fill-red-500 text-red-500" />
+            <span>AVAILABLE FOR FREELANCE & CONTRACTS</span>
+          </div>
+        </div>
+
+        {/* Main Navbar Links */}
+        <div className="flex items-center justify-between pt-3">
           
-          {/* Logo / Name */}
+          {/* Logo Name - Adjusted for mobile view to prevent duplication with Hero headline */}
           <a
             href="#about"
             onClick={(e) => scrollToSection(e, '#about')}
-            className="flex items-center gap-2.5 group focus:outline-none"
+            className="group focus:outline-none flex items-center gap-2.5"
             id="nav-logo-link"
           >
-            <div className="p-2 rounded-xl bg-cyan-950 text-cyan-400 border border-cyan-500/40 shadow-[0_0_12px_rgba(6,182,212,0.3)] transition-transform duration-300 group-hover:scale-105">
-              <Code className="w-5 h-5" />
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-red-600 to-red-800 text-white font-bebas font-black text-xl flex items-center justify-center shadow-lg shadow-red-600/30 border border-red-500/50 group-hover:scale-105 transition-transform">
+              AS
             </div>
-            <div>
-              <span className="font-black text-base sm:text-lg tracking-tight block text-white">
-                {portfolio.name}
+            <div className="hidden sm:flex flex-col">
+              <span className="font-bebas font-black text-2xl sm:text-3xl tracking-wide text-white group-hover:text-red-500 transition-colors leading-none text-3d-white">
+                ABDUL SABOOR
               </span>
-              <span className="text-[11px] text-cyan-400 font-bold tracking-wide flex items-center gap-1">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse inline-block"></span>
-                {portfolio.title.split('&')[0] || 'Engineer'}
+              <span className="text-[9px] font-bebas tracking-widest text-neutral-400 -mt-1">
+                CREATIVE DIRECTOR
               </span>
             </div>
+            {/* Mobile-only subtle label */}
+            <span className="sm:hidden font-bebas font-bold text-lg text-neutral-200 tracking-wider">
+              PORTFOLIO
+            </span>
           </a>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2" id="desktop-nav">
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8" id="desktop-nav">
             {navLinks.map((link) => {
-              const Icon = link.icon;
               const isActive = activeSection === link.id;
               return (
                 <a
@@ -121,99 +129,107 @@ export const Navbar: React.FC<NavbarProps> = ({
                   href={link.href}
                   onClick={(e) => scrollToSection(e, link.href)}
                   id={`nav-link-${link.id}`}
-                  className={`px-3 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all duration-200 flex items-center gap-1.5 ${
+                  className={`font-bebas text-sm tracking-widest transition-all duration-200 ${
                     isActive
-                      ? 'btn-3d-cyan text-slate-950'
-                      : 'text-slate-300 hover:text-white hover:bg-slate-900/60'
+                      ? 'text-red-500 font-bold border-b-2 border-red-500 pb-0.5'
+                      : 'text-neutral-400 hover:text-white'
                   }`}
                 >
-                  <Icon className="w-4 h-4" />
                   {link.name}
                 </a>
               );
             })}
           </nav>
 
-          {/* Actions & Tools */}
+          {/* Actions & Buttons */}
           <div className="flex items-center gap-2 sm:gap-3" id="nav-actions">
             
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setIsDarkMode((prev) => !prev)}
-              id="theme-toggle-btn"
-              title={isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-              className="p-2.5 rounded-xl border border-cyan-500/30 bg-slate-900 text-cyan-300 hover:border-cyan-400 transition-all"
-            >
-              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
             {/* Resume Button */}
             <button
               onClick={onOpenResume}
               id="view-resume-btn"
-              className="hidden sm:flex items-center gap-1.5 text-xs font-bold px-3.5 py-2.5 rounded-xl border border-cyan-500/30 bg-slate-900 text-slate-200 hover:border-cyan-400 transition-all"
+              className="hidden lg:flex items-center gap-1.5 font-bebas text-xs tracking-wider px-4 py-2 rounded-lg border border-neutral-800 bg-neutral-900/80 text-neutral-200 hover:border-red-600 hover:text-white transition-all"
             >
-              <FileText className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Resume</span>
+              <FileText className="w-3.5 h-3.5 text-red-500" />
+              <span>RESUME</span>
             </button>
 
             {/* Edit Portfolio Button */}
             <button
               onClick={onOpenEdit}
               id="edit-portfolio-nav-btn"
-              className="btn-3d-cyan flex items-center gap-1.5 text-xs font-bold px-3.5 py-2.5 rounded-xl"
+              className="hidden sm:flex items-center gap-1.5 font-bebas text-xs tracking-wider px-4 py-2 rounded-lg border border-neutral-800 bg-neutral-900/80 text-neutral-300 hover:bg-neutral-800 transition-all"
             >
-              <Edit className="w-3.5 h-3.5" />
-              <span className="hidden xs:inline">Edit Portfolio</span>
+              <Edit className="w-3.5 h-3.5 text-red-500" />
+              <span>EDIT</span>
             </button>
+
+            {/* Red Action Button */}
+            <a
+              href="#contact"
+              onClick={(e) => scrollToSection(e, '#contact')}
+              id="nav-contact-btn"
+              className="px-5 py-2 rounded-lg bg-red-600 hover:bg-red-700 text-white font-bebas text-sm tracking-wider transition-all shadow-lg shadow-red-600/20 flex items-center gap-1.5"
+            >
+              <span>LET'S TALK</span>
+            </a>
 
             {/* Mobile Menu Toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               id="mobile-menu-toggle-btn"
-              className="md:hidden p-2.5 rounded-xl border border-cyan-500/30 bg-slate-900 text-cyan-300"
+              className="md:hidden p-2 rounded-lg border border-neutral-800 bg-neutral-900 text-white"
             >
               {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Nav Menu Dropdown */}
+        {/* Mobile Nav Dropdown */}
         {mobileMenuOpen && (
           <div
             id="mobile-nav-menu"
-            className="md:hidden mt-2 p-4 rounded-2xl border border-cyan-500/30 bg-slate-950/95 backdrop-blur-2xl text-slate-100 shadow-2xl"
+            className="md:hidden mt-3 p-5 rounded-2xl border border-neutral-800 bg-[#0c0c0d] text-white shadow-2xl"
           >
-            <div className="flex flex-col gap-1">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => {
-                const Icon = link.icon;
                 return (
                   <a
                     key={link.id}
                     href={link.href}
                     onClick={(e) => scrollToSection(e, link.href)}
-                    className={`flex items-center gap-3 px-3 py-2.5 rounded-xl font-bold text-sm transition-colors ${
+                    className={`flex items-center justify-between px-4 py-3 rounded-xl font-bebas tracking-wider text-base transition-colors ${
                       activeSection === link.id
-                        ? 'bg-cyan-950 text-cyan-300 border border-cyan-500/30'
-                        : 'text-slate-300 hover:bg-slate-900'
+                        ? 'bg-red-950/60 text-red-400 font-bold border border-red-800/50'
+                        : 'text-neutral-300 hover:bg-neutral-900'
                     }`}
                   >
-                    <Icon className="w-4 h-4 text-cyan-400" />
-                    {link.name}
+                    <span>{link.name}</span>
+                    <ArrowUpRight className="w-4 h-4 text-red-500" />
                   </a>
                 );
               })}
 
-              <div className="pt-2 mt-2 border-t border-cyan-500/20 flex flex-col gap-2">
+              <div className="pt-3 mt-2 border-t border-neutral-800 flex flex-col gap-2">
                 <button
                   onClick={() => {
                     setMobileMenuOpen(false);
                     onOpenResume();
                   }}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-4 rounded-xl text-sm font-bold border border-cyan-500/30 text-cyan-300 bg-slate-900"
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bebas text-sm border border-neutral-800 text-neutral-200 bg-neutral-900"
                 >
-                  <FileText className="w-4 h-4 text-cyan-400" />
-                  View & Print Resume
+                  <FileText className="w-4 h-4 text-red-500" />
+                  VIEW RESUME
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    onOpenEdit();
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bebas text-sm bg-red-600 text-white"
+                >
+                  <Edit className="w-4 h-4" />
+                  EDIT PORTFOLIO
                 </button>
               </div>
             </div>
@@ -223,3 +239,4 @@ export const Navbar: React.FC<NavbarProps> = ({
     </header>
   );
 };
+

@@ -9,10 +9,10 @@ import bicAustLogoImg from '../assets/images/bic_aust_logo_1786252102413.jpg';
 import ydcLogoImg from '../assets/images/ydc_aust_logo_1786252124984.jpg';
 
 interface BrandShowcaseSectionProps {
-  isDarkMode: boolean;
+  isDarkMode?: boolean;
 }
 
-export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDarkMode }) => {
+export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = () => {
   const brands = [
     {
       id: "lylo-web-store",
@@ -20,8 +20,8 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
       role: "Founder & Full Stack Developer",
       category: "Personal E-Commerce Web App",
       tagline: "Custom Built Live E-Commerce Web Application",
-      description: "My personal e-commerce web application designed and developed ground-up with custom UI, curated men's footwear, luxury timepieces, and high-speed checkout flow.",
-      imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'><defs><linearGradient id='bg' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23040d21'/><stop offset='50%' stop-color='%23081b3b'/><stop offset='100%' stop-color='%23030814'/></linearGradient></defs><rect width='500' height='500' rx='40' fill='url(%23bg)' stroke='%2306b6d4' stroke-width='8' stroke-opacity='0.6'/><circle cx='250' cy='180' r='90' fill='%2306b6d4' fill-opacity='0.15' stroke='%2322d3ee' stroke-width='4'/><path d='M200 160 L300 160 L310 240 C310 260 290 270 250 270 C210 270 190 260 190 240 Z' fill='none' stroke='%2322d3ee' stroke-width='12' stroke-linejoin='round'/><path d='M220 160 C220 120 280 120 280 160' fill='none' stroke='%2322d3ee' stroke-width='10' stroke-linecap='round'/><path d='M235 200 L265 200 M250 185 L250 215' stroke='%2338bdf8' stroke-width='8' stroke-linecap='round'/><text x='250' y='345' font-family='system-ui, sans-serif' font-weight='900' font-size='50' fill='%23ffffff' text-anchor='middle' letter-spacing='4'>LYLO WEB</text><text x='250' y='390' font-family='system-ui, sans-serif' font-weight='800' font-size='22' fill='%2322d3ee' text-anchor='middle' letter-spacing='3'>CUSTOM E-STORE APP</text><rect x='140' y='418' width='220' height='32' rx='16' fill='%23082f49' stroke='%2306b6d4' stroke-width='2'/><text x='250' y='439' font-family='system-ui, sans-serif' font-weight='800' font-size='14' fill='%2338bdf8' text-anchor='middle' letter-spacing='2'>LIVE FULL STACK</text></svg>",
+      description: "My personal e-commerce web application designed and developed ground-up with custom UI, footwear, luxury timepieces, and high-speed checkout flow.",
+      imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'><defs><linearGradient id='bg' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23180204'/><stop offset='50%' stop-color='%232c0509'/><stop offset='100%' stop-color='%23080001'/></linearGradient></defs><rect width='500' height='500' rx='40' fill='url(%23bg)' stroke='%23dc2626' stroke-width='8' stroke-opacity='0.8'/><circle cx='250' cy='180' r='90' fill='%23dc2626' fill-opacity='0.15' stroke='%23ef4444' stroke-width='4'/><path d='M200 160 L300 160 L310 240 C310 260 290 270 250 270 C210 270 190 260 190 240 Z' fill='none' stroke='%23ef4444' stroke-width='12' stroke-linejoin='round'/><path d='M220 160 C220 120 280 120 280 160' fill='none' stroke='%23ef4444' stroke-width='10' stroke-linecap='round'/><path d='M235 200 L265 200 M250 185 L250 215' stroke='%23f87171' stroke-width='8' stroke-linecap='round'/><text x='250' y='345' font-family='system-ui, sans-serif' font-weight='900' font-size='50' fill='%23ffffff' text-anchor='middle' letter-spacing='4'>LYLO WEB</text><text x='250' y='390' font-family='system-ui, sans-serif' font-weight='800' font-size='22' fill='%23ef4444' text-anchor='middle' letter-spacing='3'>CUSTOM E-STORE APP</text><rect x='140' y='418' width='220' height='32' rx='16' fill='%23450a0a' stroke='%23dc2626' stroke-width='2'/><text x='250' y='439' font-family='system-ui, sans-serif' font-weight='800' font-size='14' fill='%23fca5a5' text-anchor='middle' letter-spacing='2'>LIVE FULL STACK</text></svg>",
       badge: "Live Web App",
       linkUrl: "https://ais-pre-yfltm4x7chjq5khrgnqlh3-159123720771.asia-east1.run.app",
       icon: Globe
@@ -33,7 +33,7 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
       category: "Local E-Commerce Brand",
       tagline: "Local Direct-to-Consumer Shoes & Fashion E-Store",
       description: "My personal local e-commerce store brand (@lylo.store.x on Instagram) providing genuine men's footwear, watches, and fashion apparel with nationwide COD.",
-      imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'><defs><linearGradient id='bg2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%230f0c1b'/><stop offset='50%' stop-color='%231e1338'/><stop offset='100%' stop-color='%230a0612'/></linearGradient></defs><rect width='500' height='500' rx='40' fill='url(%23bg2)' stroke='%23f59e0b' stroke-width='8' stroke-opacity='0.6'/><circle cx='250' cy='180' r='90' fill='%23f59e0b' fill-opacity='0.15' stroke='%23fbbf24' stroke-width='4'/><path d='M205 215 L225 145 L250 180 L275 145 L295 215 Z' fill='none' stroke='%23fbbf24' stroke-width='12' stroke-linejoin='round'/><circle cx='225' cy='135' r='8' fill='%23f59e0b'/><circle cx='250' cy='165' r='8' fill='%23f59e0b'/><circle cx='275' cy='135' r='8' fill='%23f59e0b'/><text x='250' y='340' font-family='system-ui, sans-serif' font-weight='900' font-size='46' fill='%23ffffff' text-anchor='middle' letter-spacing='3'>LYLO STORE</text><text x='250' y='385' font-family='system-ui, sans-serif' font-weight='800' font-size='22' fill='%23fbbf24' text-anchor='middle' letter-spacing='2'>@lylo.store.x</text><rect x='130' y='418' width='240' height='32' rx='16' fill='%23311b08' stroke='%23f59e0b' stroke-width='2'/><text x='250' y='439' font-family='system-ui, sans-serif' font-weight='800' font-size='14' fill='%23fcd34d' text-anchor='middle' letter-spacing='2'>LOCAL E-COM BRAND</text></svg>",
+      imageUrl: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='500' height='500' viewBox='0 0 500 500'><defs><linearGradient id='bg2' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%231a0205'/><stop offset='50%' stop-color='%2338070d'/><stop offset='100%' stop-color='%230a0102'/></linearGradient></defs><rect width='500' height='500' rx='40' fill='url(%23bg2)' stroke='%23dc2626' stroke-width='8' stroke-opacity='0.8'/><circle cx='250' cy='180' r='90' fill='%23dc2626' fill-opacity='0.15' stroke='%23ef4444' stroke-width='4'/><path d='M205 215 L225 145 L250 180 L275 145 L295 215 Z' fill='none' stroke='%23ef4444' stroke-width='12' stroke-linejoin='round'/><circle cx='225' cy='135' r='8' fill='%23dc2626'/><circle cx='250' cy='165' r='8' fill='%23dc2626'/><circle cx='275' cy='135' r='8' fill='%23dc2626'/><text x='250' y='340' font-family='system-ui, sans-serif' font-weight='900' font-size='46' fill='%23ffffff' text-anchor='middle' letter-spacing='3'>LYLO STORE</text><text x='250' y='385' font-family='system-ui, sans-serif' font-weight='800' font-size='22' fill='%23ef4444' text-anchor='middle' letter-spacing='2'>@lylo.store.x</text><rect x='130' y='418' width='240' height='32' rx='16' fill='%23450a0a' stroke='%23dc2626' stroke-width='2'/><text x='250' y='439' font-family='system-ui, sans-serif' font-weight='800' font-size='14' fill='%23fca5a5' text-anchor='middle' letter-spacing='2'>LOCAL E-COM BRAND</text></svg>",
       badge: "Local E-Com Brand",
       linkUrl: "https://www.instagram.com/lylo.store.x?igsh=dTRvazJtemRucWgw",
       icon: ShoppingBag
@@ -137,47 +137,39 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
   ];
 
   return (
-    <section id="brands" className={`py-16 md:py-24 relative overflow-hidden transition-colors ${
-      isDarkMode ? 'bg-[#0b1329] text-slate-100 border-y border-cyan-500/20' : 'bg-slate-900 text-slate-100 border-y border-cyan-500/20'
-    }`}>
+    <section id="brands" className="py-20 md:py-28 relative overflow-hidden bg-[#080808] text-white transition-colors border-b border-neutral-900">
       
-      {/* Subtle Atmospheric Glows */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold tracking-wider uppercase mb-3 border border-cyan-500/30 bg-cyan-950/60 text-cyan-300 shadow-md">
-            <Flame className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Associated Ventures & Direct Ownership</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16 gap-6 border-b border-neutral-900 pb-6">
+          <div>
+            <h2 className="font-bebas text-4xl sm:text-6xl tracking-wide uppercase text-white leading-none">
+              ASSOCIATED VENTURES & AGENCIES
+            </h2>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
-            Key Organizations & <span className="text-cyan-shine text-glow-cyan">Leadership Roles</span>
-          </h2>
-
-          <p className="text-sm sm:text-base max-w-2xl text-slate-300">
-            Explore the software house, official university incubators, youth media councils, and e-commerce stores I direct and operate.
+          <p className="text-neutral-400 text-xs sm:text-sm max-w-md font-sans-main leading-relaxed">
+            Software houses, university incubators, e-commerce web stores, and commercial video agencies directed by Abdul Saboor.
           </p>
         </div>
 
-        {/* Wide Landscape Brands Grid */}
+        {/* Brands Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
           {brands.map((brand) => {
             const Icon = brand.icon;
             return (
               <div
                 key={brand.id}
-                className="group rounded-3xl p-5 sm:p-6 card-3d-glass border-cyan-500/25 flex flex-col sm:flex-row items-center gap-5 sm:gap-6 hover:border-cyan-400/60 transition-all"
+                className="group rounded-2xl p-6 bg-[#0c0c0d] border border-neutral-900 hover:border-red-600/50 flex flex-col sm:flex-row items-center gap-6 transition-all duration-300 card-3d shine-overlay shadow-xl"
               >
-                {/* Brand Visual Logo Image in Landscape Frame */}
-                <div className="w-full sm:w-36 h-36 shrink-0 overflow-hidden rounded-2xl border border-cyan-500/30 shadow-xl bg-slate-950 p-2 flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+                {/* Brand Visual Logo Image */}
+                <div className="w-full sm:w-32 h-32 shrink-0 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900 p-2 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
                   <img
                     src={brand.imageUrl}
                     alt={`${brand.name} Logo`}
                     referrerPolicy="no-referrer"
-                    className="max-w-full max-h-full object-contain rounded-xl"
+                    className="max-w-full max-h-full object-contain rounded-lg"
                   />
                 </div>
 
@@ -185,21 +177,21 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
                 <div className="flex-1 flex flex-col justify-between w-full text-center sm:text-left">
                   <div>
                     <div className="flex flex-wrap items-center justify-center sm:justify-between gap-2 mb-2">
-                      <span className="text-[10px] font-extrabold px-3 py-1 rounded-full border border-cyan-500/30 bg-cyan-950/60 text-cyan-300">
+                      <span className="font-bebas text-xs tracking-wider px-2.5 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-red-500">
                         {brand.badge}
                       </span>
 
-                      <span className="text-xs font-semibold flex items-center gap-1 text-slate-300">
-                        <Icon className="w-3.5 h-3.5 text-cyan-400" />
+                      <span className="font-bebas text-xs tracking-wider flex items-center gap-1 text-neutral-400">
+                        <Icon className="w-3.5 h-3.5 text-red-500" />
                         <span>{brand.role}</span>
                       </span>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-black mb-1.5 tracking-tight text-white group-hover:text-cyan-300 transition-colors">
+                    <h3 className="font-bebas text-2xl text-white tracking-wide uppercase mb-1 group-hover:text-red-500 transition-colors">
                       {brand.name}
                     </h3>
 
-                    <p className="text-xs leading-relaxed mb-4 text-slate-300 font-normal">
+                    <p className="text-xs leading-relaxed mb-4 text-neutral-400 font-sans-main line-clamp-2">
                       {brand.description}
                     </p>
                   </div>
@@ -208,10 +200,10 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
                     href={brand.linkUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-3d-cyan inline-flex items-center justify-center sm:justify-between text-xs font-bold py-2.5 px-4 rounded-xl w-full"
+                    className="inline-flex items-center justify-center sm:justify-between font-bebas text-xs tracking-widest py-2.5 px-5 rounded-lg bg-red-600 text-white hover:bg-red-700 transition-all w-full"
                   >
-                    <span>Visit Venture Link</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 ml-1" />
+                    <span>VISIT VENTURE LINK</span>
+                    <ArrowUpRight className="w-4 h-4 ml-1" />
                   </a>
                 </div>
 
@@ -224,4 +216,5 @@ export const BrandShowcaseSection: React.FC<BrandShowcaseSectionProps> = ({ isDa
     </section>
   );
 };
+
 

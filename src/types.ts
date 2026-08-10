@@ -55,6 +55,21 @@ export interface SocialLinks {
   website?: string;
 }
 
+export interface EditItem {
+  id: string;
+  title: string;
+  type: 'video' | 'design' | 'reel' | 'motion';
+  categoryLabel: string;
+  description: string;
+  thumbnailUrl: string;
+  mediaUrl?: string; // Video URL (YouTube embed/watch link, Vimeo, MP4, TikTok/IG, or image)
+  softwareUsed: string[];
+  aspectRatio?: '16:9' | '9:16' | '1:1' | '4:5';
+  duration?: string;
+  date?: string;
+  featured?: boolean;
+}
+
 export interface PortfolioData {
   name: string;
   title: string;
@@ -65,6 +80,7 @@ export interface PortfolioData {
   isAvailableForHire: boolean;
   socials: SocialLinks;
   projects: Project[];
+  edits?: EditItem[];
   skillCategories: SkillCategory[];
   experiences: ExperienceItem[];
   education: EducationItem[];

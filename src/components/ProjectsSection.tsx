@@ -1,26 +1,21 @@
 import React, { useState } from 'react';
 import { 
-  FolderGit2, 
   ExternalLink, 
   Github, 
   Search, 
-  Sparkles, 
-  Star, 
   Eye,
-  Crown,
-  Flame
+  ArrowRight
 } from 'lucide-react';
 import { Project } from '../types';
 
 interface ProjectsSectionProps {
   projects: Project[];
-  isDarkMode: boolean;
+  isDarkMode?: boolean;
   onSelectProject: (project: Project) => void;
 }
 
 export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   projects,
-  isDarkMode,
   onSelectProject
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -40,44 +35,37 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
   });
 
   return (
-    <section id="projects" className={`py-16 md:py-24 relative overflow-hidden transition-colors ${
-      isDarkMode ? 'bg-[#080d1a] text-slate-100' : 'bg-[#0d172a] text-slate-100'
-    }`}>
+    <section id="projects" className="py-20 md:py-28 relative overflow-hidden bg-[#080808] text-white transition-colors border-b border-neutral-900">
       
-      {/* Background Ambient Glows */}
-      <div className="absolute top-1/2 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-[160px] pointer-events-none -z-10" />
-
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
-        {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-12">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold tracking-wider uppercase mb-3 bg-cyan-950/60 text-cyan-300 border border-cyan-500/30 shadow-md">
-            <Crown className="w-3.5 h-3.5 text-cyan-400" />
-            <span>Featured Case Studies ({projects.length}+ Projects)</span>
+        {/* Section Header matching Reference Image: "SELECTED PROJECTS" */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6 border-b border-neutral-900 pb-6">
+          <div>
+            <h2 className="font-bebas text-4xl sm:text-6xl tracking-wide uppercase text-white leading-none">
+              SELECTED PROJECTS
+            </h2>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-4 text-white">
-            18+ Commercial & <span className="text-cyan-shine text-glow-cyan">Creative Deliverables</span>
-          </h2>
-
-          <p className="text-sm sm:text-base max-w-2xl text-slate-300">
-            Explore 18+ software builds, YouTube automation platforms (@BoltMindzYT 66.1K+ Subs), e-commerce brands, and video production projects.
-          </p>
+          <div className="flex items-center gap-2 text-xs font-bebas tracking-widest text-neutral-400 hover:text-red-500 cursor-pointer transition-colors">
+            <span>VIEW ALL PROJECTS</span>
+            <ArrowRight className="w-4 h-4 text-red-500" />
+          </div>
         </div>
 
-        {/* Filter Controls & Search */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-10">
+        {/* Filter Controls & Search Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12">
           
-          {/* Category Tabs */}
+          {/* Category Pills */}
           <div className="flex items-center gap-2 overflow-x-auto max-w-full pb-2 md:pb-0 scrollbar-none w-full md:w-auto">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all whitespace-nowrap ${
+                className={`px-4 py-2 rounded-lg font-bebas text-xs tracking-wider transition-all whitespace-nowrap ${
                   selectedCategory === cat
-                    ? 'btn-3d-cyan'
-                    : 'bg-slate-900/80 text-slate-300 hover:bg-slate-800 hover:text-white border border-cyan-500/20'
+                    ? 'bg-red-600 text-white font-bold shadow-lg shadow-red-600/20'
+                    : 'bg-neutral-900 text-neutral-400 hover:text-white border border-neutral-800'
                 }`}
               >
                 {cat}
@@ -85,82 +73,79 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
             ))}
           </div>
 
-          {/* Search Bar */}
-          <div className="relative w-full md:w-80">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-cyan-400" />
+          {/* Search Box */}
+          <div className="relative w-full md:w-72">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
             <input
               type="text"
-              placeholder="Search 18+ projects..."
+              placeholder="Search works..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition-all focus:outline-none focus:border-cyan-400 border border-cyan-500/30 bg-slate-900/90 text-slate-100 placeholder-slate-400"
+              className="w-full pl-11 pr-4 py-2 rounded-lg font-bebas text-xs tracking-wider transition-all focus:outline-none focus:border-red-600 border border-neutral-800 bg-neutral-900 text-white placeholder-neutral-500"
             />
           </div>
 
         </div>
 
-        {/* Wide Landscape Projects Grid */}
+        {/* Projects Grid - 3-Column Layout matching Reference Image */}
         {filteredProjects.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {filteredProjects.map((project) => (
-              <div
-                key={project.id}
-                className="group rounded-3xl overflow-hidden card-3d-glass border-cyan-500/25 flex flex-col sm:flex-row items-stretch hover:border-cyan-400/60 transition-all duration-300"
-              >
-                {/* Image Frame - Landscape Format */}
-                <div className="sm:w-2/5 shrink-0 relative overflow-hidden bg-slate-950 min-h-[220px]">
-                  <img
-                    src={project.imageUrl}
-                    alt={project.title}
-                    referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                  />
-
-                  <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-slate-950/80 via-transparent to-transparent" />
-
-                  {/* Featured Badge */}
-                  {project.featured && (
-                    <div className="absolute top-3 left-3 bg-gradient-to-r from-cyan-400 to-emerald-400 text-slate-950 text-[10px] font-black px-2.5 py-1 rounded-full flex items-center gap-1 shadow-lg">
-                      <Star className="w-3 h-3 fill-slate-950" />
-                      <span>FEATURED</span>
-                    </div>
-                  )}
-
-                  {/* Category Tag */}
-                  <div className="absolute top-3 right-3 bg-slate-950/80 backdrop-blur-md text-cyan-300 border border-cyan-500/30 text-[10px] font-bold px-2.5 py-1 rounded-full">
-                    {project.category}
-                  </div>
-                </div>
-
-                {/* Content Area */}
-                <div className="sm:w-3/5 p-6 flex flex-col justify-between">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {filteredProjects.map((project, index) => {
+              const formattedIndex = (index + 1).toString().padStart(2, '0');
+              return (
+                <div
+                  key={project.id}
+                  className="group rounded-2xl overflow-hidden bg-[#0c0c0d] border border-neutral-900 hover:border-red-600/50 flex flex-col justify-between transition-all duration-300 p-4 card-3d shine-overlay shadow-xl"
+                >
                   <div>
-                    <h3 className="text-xl font-black mb-1 group-hover:text-cyan-400 transition-colors">
-                      {project.title}
-                    </h3>
+                    {/* Thumbnail Frame */}
+                    <div className="relative w-full aspect-[16/10] rounded-xl overflow-hidden bg-neutral-900 mb-4">
+                      <img
+                        src={project.imageUrl}
+                        alt={project.title}
+                        referrerPolicy="no-referrer"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                      />
+                      
+                      {/* Dark Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                    </div>
 
-                    <p className="text-xs font-semibold text-cyan-400/90 mb-3 line-clamp-1">
-                      {project.tagline}
-                    </p>
+                    {/* Card Footer matching Reference Image: Red Number + Title + Subtitle + Arrow */}
+                    <div className="flex items-start justify-between gap-3 pt-2">
+                      <div className="flex items-baseline gap-3">
+                        <span className="font-bebas text-3xl sm:text-4xl font-bold text-red-600 shrink-0">
+                          {formattedIndex}
+                        </span>
+                        <div>
+                          <h3 className="font-bebas text-xl sm:text-2xl font-bold text-white uppercase group-hover:text-red-500 transition-colors leading-tight">
+                            {project.title}
+                          </h3>
+                          <p className="font-bebas text-xs text-neutral-400 tracking-wider uppercase mt-0.5">
+                            {project.category}
+                          </p>
+                        </div>
+                      </div>
 
-                    <p className="text-xs leading-relaxed mb-4 text-slate-400 font-normal line-clamp-3">
+                      <button
+                        onClick={() => onSelectProject(project)}
+                        className="p-2 rounded-full border border-neutral-800 bg-neutral-900 text-neutral-300 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all shrink-0 mt-1"
+                        title="View Project"
+                      >
+                        <ArrowRight className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <p className="mt-3 text-xs text-neutral-400 font-sans-main line-clamp-2 leading-relaxed">
                       {project.description}
                     </p>
 
-                    {/* Impact Metric Highlight */}
-                    {project.impactMetric && (
-                      <div className="mb-4 px-3 py-2 rounded-xl text-[11px] font-bold flex items-center gap-2 border border-emerald-500/30 bg-emerald-500/10 text-emerald-300">
-                        <Sparkles className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                        <span className="line-clamp-1">{project.impactMetric}</span>
-                      </div>
-                    )}
-
-                    {/* Tech Badges */}
-                    <div className="flex flex-wrap gap-1.5 mb-4">
-                      {project.tags.map((tag) => (
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-1.5 mt-3">
+                      {project.tags.slice(0, 3).map((tag) => (
                         <span
                           key={tag}
-                          className="text-[10px] font-extrabold px-2 py-0.5 rounded-md border border-slate-700/60 bg-slate-900 text-slate-300"
+                          className="font-bebas text-[10px] tracking-wider px-2 py-0.5 rounded bg-neutral-900 border border-neutral-800 text-neutral-300"
                         >
                           {tag}
                         </span>
@@ -168,14 +153,14 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                     </div>
                   </div>
 
-                  {/* Card Footer Actions */}
-                  <div className="pt-3 border-t border-slate-800 flex items-center justify-between gap-2">
+                  {/* Actions */}
+                  <div className="mt-4 pt-3 border-t border-neutral-900 flex items-center justify-between text-xs">
                     <button
                       onClick={() => onSelectProject(project)}
-                      className="flex items-center gap-1.5 text-xs font-bold text-cyan-400 hover:text-cyan-300 transition-colors"
+                      className="font-bebas tracking-wider text-neutral-300 hover:text-red-500 flex items-center gap-1 transition-colors"
                     >
-                      <Eye className="w-3.5 h-3.5" />
-                      <span>Case Details</span>
+                      <Eye className="w-3.5 h-3.5 text-red-500" />
+                      <span>CASE STUDY</span>
                     </button>
 
                     <div className="flex items-center gap-2">
@@ -184,8 +169,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg bg-slate-900 text-slate-300 hover:text-white border border-slate-700 transition-all"
-                          title="GitHub Code"
+                          className="p-1.5 rounded bg-neutral-900 text-neutral-400 hover:text-white transition-colors"
+                          title="Source Code"
                         >
                           <Github className="w-3.5 h-3.5" />
                         </a>
@@ -196,8 +181,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                           href={project.demoUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="p-1.5 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black transition-all"
-                          title="Live Preview / Link"
+                          className="p-1.5 rounded bg-red-600 text-white hover:bg-red-700 transition-colors"
+                          title="Live Demo"
                         >
                           <ExternalLink className="w-3.5 h-3.5" />
                         </a>
@@ -206,27 +191,24 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
                   </div>
 
                 </div>
-
-              </div>
-            ))}
+              );
+            })}
           </div>
         ) : (
-          <div className="text-center py-16 px-4 rounded-3xl border border-slate-800 bg-slate-900/60">
-            <Search className="w-10 h-10 text-cyan-400 mx-auto mb-3 opacity-80" />
-            <h3 className="text-lg font-bold mb-1">
-              No matching projects found
-            </h3>
-            <p className="text-xs max-w-sm mx-auto text-slate-400">
-              Try adjusting your search criteria or selecting another category.
+          <div className="text-center py-16 px-4 rounded-2xl border border-neutral-900 bg-neutral-900/50">
+            <Search className="w-10 h-10 text-neutral-500 mx-auto mb-3" />
+            <h3 className="font-bebas text-xl text-white mb-1">NO MATCHING PROJECTS FOUND</h3>
+            <p className="text-xs text-neutral-400 max-w-sm mx-auto mb-4 font-sans-main">
+              Try adjusting your search query or switching categories.
             </p>
             <button
               onClick={() => {
                 setSelectedCategory('All');
                 setSearchQuery('');
               }}
-              className="mt-4 px-4 py-2 rounded-xl text-xs font-bold btn-3d-cyan text-white"
+              className="px-5 py-2 rounded-lg font-bebas text-xs tracking-wider bg-red-600 text-white"
             >
-              Reset Filters
+              RESET FILTERS
             </button>
           </div>
         )}
@@ -235,5 +217,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({
     </section>
   );
 };
+
 
 
